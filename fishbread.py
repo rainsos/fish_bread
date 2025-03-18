@@ -86,9 +86,7 @@ def calculate_sales():
     # 각 붕어빵 종류에 대해 판매 금액을 계산하여 합산
     for key in sales:
         total_sales += (price[key] * sales[key])
-        return total_sales
-
-    print(f"💰 총 판매액: {total_sales}원") # 리턴을 안쓸경우에는 그냥 프린트만 출력 리턴을써서 밖에서 다른변수로 저장해서 사용하려면 리턴사용
+        print(f"💰 총 판매액: {total_sales}원") # 리턴을 안쓸경우에는 그냥 프린트만 출력 리턴을써서 밖에서 다른변수로 저장해서 사용하려면 리턴사용
     # return total_sales # total_sales 값이 calculate_sales로 저장되며 total_sales_price = calculate_sales() 홒출했을때 값을가져온다다 
 
 while True:
