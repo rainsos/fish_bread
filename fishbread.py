@@ -5,11 +5,18 @@ stock = {
     "초코붕어빵": 5
 }
 
-# 판매(변수/딕셔너리리)
+# 판매(변수/딕셔너리)
 sales =  {
     "팥붕어빵": 0,
     "슈크림붕어빵": 0,
     "초코붕어빵": 0
+}
+
+# 가격(변수/딕셔너리)
+price =  {
+    "팥붕어빵": 1000,
+    "슈크림붕어빵": 800,
+    "초코붕어빵": 900
 }
 
 # 주문 기능
@@ -25,6 +32,11 @@ def order_bread():
             
             try:
                 bread_count = int(input("주문할 갯수를 입력하세요"))
+
+                if bread_count < 0:
+                    print("❌ 붕어빵 개수는 음수일 수 없습니다. 다시 입력해주세요.\n")
+                    break  
+
                 if stock[bread_type] >= bread_count:
                     stock[bread_type] -= bread_count
                     sales[bread_type] += bread_count
@@ -68,15 +80,17 @@ def admin_mode():
         else:
             print("❌ 해당 붕어빵은 존재하지 않습니다. 다시 입력해주세요.\n")
 
+def calculate_sales():
+    total_sales = 0  # 총 판매 금액 초기화
 
+    # 각 붕어빵 종류에 대해 판매 금액을 계산하여 합산
+    for key in sales:
+        total_sales += (price[key] * sales[key])
+        return total_sales
 
+    print(f"💰 총 판매액: {total_sales}원") # 리턴을 안쓸경우에는 그냥 프린트만 출력 리턴을써서 밖에서 다른변수로 저장해서 사용하려면 리턴사용
+    # return total_sales # total_sales 값이 calculate_sales로 저장되며 total_sales_price = calculate_sales() 홒출했을때 값을가져온다다 
 
-
-
-
-
-
-#메인 기능 선택
 while True:
     mode = input("원하는 모드를 선탁하세요 ( 주문, 관리자, 종료 : ")
     if mode == "종료":
@@ -94,3 +108,5 @@ while True:
     else:
         print("잘못된 입력입니다. '주문', '관리자', '종료' 중에서 선택해주세요.")
 
+# 판매액 계산하기
+calculate_sales()
